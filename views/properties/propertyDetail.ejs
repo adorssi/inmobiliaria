@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <body>
+        <%- include('../partials/header', {header-property--detail}) %>
+            <main class="property-detail">
+                <section class="property-detail--images">
+                    <img src="<%= property.image %>" width="100%">
+                </section>
+                    <h1 class="property-detail--title"> <%= property.title %> </h1>
+                
+                    <article class="buttons">
+                        <button>Información</button>
+                        <button>Descripción</button>
+                    </article>
+                    <article class="informacion">
+                        <div>
+                            <p>REF#</p>
+                            <span><%= property.ref %></span>
+                        </div>
+                        <div>
+                            <p>Tipo</p>
+                            <% for(tipoPropiedad of tipoPropiedades) { %>
+                                <% if(property.type == tipoPropiedad.id) { %>
+                                    <span><%= tipoPropiedad.name %></span>
+                                <% } %>
+                            <% } %>
+                        </div>
+                        <div>
+                            <p>Precio</p>
+                            <% if(property.muestraPrecio) { %>
+                                <span><%= property.currency %> <%= property.price %></span>
+                            <% } else { %>
+                                <span>CONSULTE</span>
+                            <% } %>
+                        </div>
+                        
+                        <div>
+                            <p>Localidad</p>
+                            <span><% for(ciudad of ciudades) { %>
+                                <% if(property.city == ciudad.id) { %>
+                                    <%= ciudad.name %>
+                                <% } %>
+                            <% } %></span>
+                        </div>
+
+                        <div>
+                            <p>Dirección</p>
+                            <span><%= property.address %></span>
+                        </div>
+                        <div>
+                            <p>Operación</p>
+                            <span class="operationType badge-detail <%= property.operationType === 'Alquiler' ? 'tag-alquiler text-white rounded-2xl px-2' : 'tag-venta text-white rounded-2xl px-2' %>"> <%= property.operationType %> </span>
+                        </div>
+                            <% if(property.operationType != 'Alquiler' && property.financiacion == 1) { %>
+                                <div>
+                                    <p>Financiación</p>
+                                    <span class="financiacion"> ¡FINANCIACION! </span>
+                                </div>
+                            <% } %>
+                            <% if(property.status != 'Disponible') { %>
+                                <div>
+                                    <p>Estado</p>
+                                    <span><%= property.status %></span>
+                                </div>
+                            <% } %>
+                        <% if(property.superficieTerreno > 0) { %>
+                            <div>
+                                <p>Superficie</p>
+                                <span><%= property.superficieTerreno %></span>
+                            </div>
+                        <% } %>
+                        <% if(property.superficieConstruccion > 0) { %>
+                            <div>
+                                <p>Tamaño Construccion</p>
+                                <span><%= property.superficieConstruccion %></span>
+                            </div>
+                        <% } %>
+                    </article>
+                    <%- include('../partials/propertyFeatures.ejs', {property, propertyComodidades}) %>
+                    <article class="descripcion">
+                        <h2>Descripción</h2>
+                        <p><%= property.description %></p>
+                    </article>
+                
+                
+            </main>
+        <%- include('../partials/footer.ejs') %>
+    </body>
+</html>    

@@ -1,0 +1,5 @@
+@mixin grid($columnas, $separacion: 2rem, $fraccion: 1fr) {
+    display: grid;
+    grid-template-columns: repeat($columnas, $fraccion);
+    gap: $separacion;
+}

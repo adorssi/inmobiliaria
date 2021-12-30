@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/admin/head.ejs') %>
+        <body>
+            <%- include('../partials/admin/header.ejs') %>
+                <main class="main-contenedor">
+                    <%- include('../partials/admin/sidebar.ejs') %>
+                    <form action="/properties/edit/<%= property.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form-createProduct">
+                        <div>
+                            <input type="text" name="title" id="title" placeholder="Nombre" value="<%= property.title %>" required>
+                        </div>
+                        <section class="price-fields">
+                            <div>
+                                <select name="currency" id="currency" required>
+                                    <option value="" disabled>--Moneda--</option>
+                                    <option value="$"<% if(property.currency === '$') { %>
+                                        <%= 'selected' %>
+                                        
+                                        <% } %>
+                                        >$
+                                    </option>
+                                    <option value="USD"<% if(property.currency === 'USD') { %>
+                                        <%= 'selected' %>
+                                        
+                                        <% } %>
+                                        >USD
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <input type="number" name="price" id="price" value="<%= property.price %>" required>
+                            </div>
+                        </section>
+                        <div>
+                            <input type="text" name="category" id="category" value="<%= property.type %>" required>
+                        </div>
+                        <div>
+                            <label>Publicado</label>
+                            <div class="input-published">
+                                <input type="radio" name="published" id="published1" value="true"
+                                <% if(property.published === true) { %>
+                                    <%= 'checked' %>
+                                <% } %>
+                                >
+                                <label for="published1"> Si </label>
+                            </div>
+                            <div class="input-published">
+                                <input type="radio" name="published" id="published2" value="false" 
+                                <% if(property.published === false) { %>
+                                    <%= 'checked' %>
+                                <% } %>
+                                >
+                                <label for="published2"> No </label>
+                            </div>
+                            <div class="input-featured">
+                                <label for="featured">Producto destacado</label>
+                                <input type="checkbox" name="featured" id="featured"
+                                <% if(property.featured === true) { %>
+                                    <%= 'checked' %>
+                                <% } %>
+                                >
+                            </div>                 
+                            <div class="input-imagenes">
+                                <label for="image">Imagenes del Producto</label>
+                                <div class="products-images">
+                                    <img src="<%= property.image %>" width="80px">
+                                </div>
+                                <input type="file" name="image">
+                            </div>
+
+                            <div>
+                                <textarea name="description" id="description" cols="30" rows="5" width="100%" required><%= property.description %></textarea>
+                            </div>
+                   
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/adminDash'">Cerrar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </main>
+        </body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "name": "grupo7-tecnorobot",
+  "version": "1.0.0",
+  "description": "Tienda Online de Tecnología",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "dev": "nodemon app.js",
+    "sass": "sass --watch src/scss:public/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cristianl87/Grupo7-Tecnorobot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cristianl87/Grupo7-Tecnorobot/issues"
+  },
+  "homepage": "https://github.com/cristianl87/Grupo7-Tecnorobot#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "multer": "^1.4.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^5.0.13",
+    "dart-sass": "^1.25.0",
+    "gulp": "^4.0.2",
+    "gulp-cache": "^1.1.3",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-postcss": "^9.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-terser-js": "^5.2.2",
+    "gulp-webp": "^4.0.1",
+    "node-sass": "^7.0.0",
+    "nodemon": "^2.0.15",
+    "postcss": "^8.4.5",
+    "sass": "^1.45.0"
+  }
+}
