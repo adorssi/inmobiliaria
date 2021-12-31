@@ -24,7 +24,6 @@
     }
     .address {
         padding: .5rem 1rem;
-        text-decoration: underline;
         color: #0073bd;
     }
     .info {
@@ -42,12 +41,14 @@
             color: #0073bd;
             font-weight: 700;
     
-            span {
+            .currency,
+            .finalPrice {
                 font-size: 2rem;
             }
             .consultarPrecio {
-                font-size: 1.5rem;
+                font-size: 2rem;
                 line-height: 15px;
+                margin: 1rem 0;
             }
             .fa-whatsapp {
                 font-size: 2.5rem;
@@ -62,10 +63,11 @@
         font-weight: 700;
         padding: 0 .2rem;
         left: 5px;
-        bottom: 18px;
+        top: 5px;
         display: inline-table;
         z-index: 9999;
         font-size: 1.5rem;
+        line-height: 18px;
     }
     .propertyType {
         position: absolute;
@@ -92,10 +94,10 @@
 
     .feature {
         display: flex;
-        gap: .2rem;
+        gap: .4rem;
 
         p {
-            font-weight: 100;
+            font-weight: 700;
         }
 
         i {
@@ -144,8 +146,14 @@
 
 @media(min-width: 992px) {
     .property {
-        
+        .operationType {
+            right: 5px;
+            bottom: 5px;
+            top: auto;
+            left: auto;
+        }
     }
+    
 }
 
 .tag-alquiler {

@@ -15,7 +15,7 @@
             </div>
             <section class="most-featured-properties">
                 <% for(property of topThreeProperties) { %>
-                    <div class="property">
+                    <a href="/properties/detail/<%= property.id %>" class="property">
                         <i class="fas fa-bookmark"></i>
                         <div class="property-image">
                             <span class="gradient"></span>
@@ -61,12 +61,11 @@
                                     
                                 <% } else { %>
                                     <span class="consultarPrecio"> CONSULTE PRECIO </span>
-                                    <i class="fab fa-whatsapp"></i>
                                 <% } %>
                             </div>
                             <%- property.financiacion == 1 ? '<span class="financiacion"> ¡FINANCIACION! </span>' : '' %>
                         </div>
-                    </div>
+                    </a>
                 <% } %>
             </section>
             
@@ -121,7 +120,6 @@
                                         <span class="finalPrice"> <%= property.price %> </span>
                                     <% } else { %>
                                         <span class="consultarPrecio"> CONSULTE PRECIO </span>
-                                        <i class="fab fa-whatsapp"></i>
                                     <% } %>
                                 </div>
                                 <%- property.financiacion == 1 ? '<span class="financiacion"> ¡FINANCIACION! </span>' : '' %>
@@ -130,9 +128,11 @@
                     </a>
                 <% } %>
             </section>
+        </div>
             <section class="banner-home1">
                 <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis tempore velit aliquam quis unde ex iure tempora corporis dicta ducimus.</span>
             </section>
+        <div class="contenedor">
             <div class="h3-home">
                 <h3>EN VENTA</h3>
                 <hr class="separador">
