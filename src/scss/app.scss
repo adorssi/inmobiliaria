@@ -1,8 +1,6 @@
 @import './base/normalize';
-//@import './base/variables';
 @import './base/globales';
 @import './base/mixins';
-//@import './base/utilidades';
 
 @import './layout/header';
 @import './layout/propertyFilter';
@@ -13,7 +11,3 @@
 @import './layout/propertyDetail';
 @import './layout/searchResults';
 @import './layout/footer';
-
-//@import './layout/productos';
-//@import './layout/contacto';
-//@import './layout/mantenimiento';

@@ -124,13 +124,14 @@ const propertyController = {
                 const imagenActual = property.image;
                 const date = property.date;
 
-                //Si los input tipo checkbox no estan marcados, no vienen en el req.body, por lo tanto si la propiedad ya los tenia marcados, debo eliminarlos
+                //Si los input tipo checkbox no estan marcados, directamente no vienen en el req.body, por lo tanto si la propiedad ya los tenia marcados, debo eliminarlos.
                 for (const [key, value] of Object.entries(property)) {
                     if(value == 'on') {
                         delete property[key];
                     }
                 }
 
+                
                 for(item in propertyItems) {
                     property[item] = propertyItems[item];
                 }
