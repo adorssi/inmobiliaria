@@ -1,0 +1,2 @@
+const moreOptions=document.getElementById("more-options"),bedrooms=document.getElementById("bedrooms"),operationType=document.getElementById("operation"),propertyType=document.getElementById("type"),datosBusqueda={bedrooms:"",operationType:"",propertyType:""};bedrooms.addEventListener("change",e=>{datosBusqueda.bedrooms=e.target.value}),operationType.addEventListener("change",e=>{datosBusqueda.operationType=e.target.value}),propertyType.addEventListener("change",e=>{datosBusqueda.propertyType=e.target.value});
+//# sourceMappingURL=propertySearch.js.map

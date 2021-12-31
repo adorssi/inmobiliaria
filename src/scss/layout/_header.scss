@@ -93,6 +93,9 @@ nav.desktop ul li:nth-last-child(1) a {
     .user-account-icon {
         display: block;
     }
+    .mobile {
+        display: none;
+    }
 }
 
 @media(min-width: 992px) {

@@ -1,0 +1,21 @@
+.search-results--main {
+    min-height: 100vh;
+}
+.search-results-container {
+    padding-top: 150px;
+    margin: 0 auto;
+
+    h1 {
+        font-size: 3rem;
+    }
+    .lista-propiedades {
+        padding-bottom: 5rem;
+    }
+}
+
+@media(min-width: 769px) {
+    .search-results-container {
+        width: 80%;
+    }
+    
+}

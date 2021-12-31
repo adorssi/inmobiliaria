@@ -28,5 +28,7 @@ router.put('/edit/:id', upload.single('image'), propertyController.editPUT);
 
 router.delete('/delete/:id', propertyController.delete);
 
+router.get('/search', propertyController.search);
+
 
 module.exports = router;

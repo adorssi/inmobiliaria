@@ -17,6 +17,8 @@ const departamentos = JSON.parse(departamentosJSON);
 const ciudadesJSON = fs.readFileSync(folderData + '/ciudades.json', 'utf-8');
 const ciudades = JSON.parse(ciudadesJSON);
 
+const operationTypes = ['Alquiler', 'Venta', 'Venta/Alquiler']
+
 const propertyController = {
     list: (req, res) => {
         publishedProperties = properties.filter( property => property.published === true);
@@ -88,24 +90,28 @@ const propertyController = {
     editGET: (req, res) => {
         const propertyId = Number(req.params.id);
         const propertyObj = properties.filter( property => property.id === propertyId)
-        res.render('./properties/propertyEdit', {property: propertyObj[0]});
+        res.render('./properties/propertyEdit', {
+            property: propertyObj[0],
+            tipoPropiedades: tipoPropiedades,
+            ciudades: ciudades,
+            departamentos: departamentos,
+            comodidades: comodidades,
+            operationTypes: operationTypes
+        });
     },
     editPUT: (req, res) => {
         const id = Number(req.params.id);
-        let {title, currency, price, category, freeShipping, published, description} = req.body;
-        let featured = false;
-        let image;
+        let propertyItems = Object.assign({},req.body);
+        propertyItems.price = Number(propertyItems.price);
 
+        let image;
         if(req.file) {
             image = '/images/properties/' + req.file.filename;
         };
-        if(req.body.featured) {
-            featured = true;
-        }
-        published === 'true' ? published = true : published = false;
 
         properties.forEach( property => {
             if(property.id === id) {
+                
                 if(image != undefined) {
                     fs.unlink(path.join(__dirname, '../public') + property.image, (err) => {
                         if (err) {
@@ -115,15 +121,22 @@ const propertyController = {
                     });
                 }
 
-                property.title = title;
-                property.currency = currency;
-                property.price = price;
-                property.category = category;
-                property.freeShipping = freeShipping;
-                property.published = published;
-                property.image = image || property.image;
-                property.featured = featured;
-                property.description = description
+                const imagenActual = property.image;
+                const date = property.date;
+
+                //Si los input tipo checkbox no estan marcados, no vienen en el req.body, por lo tanto si la propiedad ya los tenia marcados, debo eliminarlos
+                for (const [key, value] of Object.entries(property)) {
+                    if(value == 'on') {
+                        delete property[key];
+                    }
+                }
+
+                for(item in propertyItems) {
+                    property[item] = propertyItems[item];
+                }
+
+                property.image = image || imagenActual;
+                property.date = date;
 
                 const propertyString = JSON.stringify(properties);
                 fs.writeFileSync(folderData + '/properties.json', propertyString);
@@ -151,6 +164,37 @@ const propertyController = {
             listadoPropiedades: properties,
             tipoPropiedades: tipoPropiedades
         });
+    },
+    search: (req, res) => {
+        const {bedrooms, operationType, propertyType} = req.query;
+        const resultado = properties.filter(filtrarBedroom).filter(filtrarOperacion).filter(filtrarTipo)
+
+        function filtrarBedroom(propiedad) {
+            if(bedrooms) {
+                return propiedad.bedrooms == bedrooms;
+            }
+            return propiedad;
+        }
+        function filtrarOperacion(propiedad) {
+            if(operationType) {
+                return propiedad.operationType == operationType;
+            }
+            return propiedad;
+        }
+        function filtrarTipo(propiedad) {
+            if(propertyType) {
+                return propiedad.type == propertyType;
+            }
+            return propiedad;
+        }
+        res.render('./properties/searchResults', {
+            propiedades: resultado,
+            tipoPropiedades: tipoPropiedades,
+            ciudades: ciudades,
+            departamentos: departamentos,
+            comodidades: comodidades,
+            operationTypes: operationTypes
+        })
     }
 }
 

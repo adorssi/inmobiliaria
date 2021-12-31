@@ -23,6 +23,9 @@
             font-weight: bold;
         }
     }
+    .contenedor {
+        width: 80%;
+    }
 }
 .slide {
     background: linear-gradient(45deg, black, transparent), url('../images/slide-one.jpg');
@@ -32,6 +35,23 @@
     background-repeat: no-repeat;
     background-position: center;
 }
+.h3-home {
+    text-align: center;
+
+    h3 {
+        margin: 10px 0 5px;
+        font-weight: 200;
+        font-size: 1.9rem;
+    }
+    .separador {
+        width: 45px;
+        color: #8080808c;
+        margin: 0 auto;
+        border: 2px solid;
+        border-radius: 2px;
+    }
+}
+
 .banner-home1 {
     background: linear-gradient(45deg, black, transparent), url('../images/banner1.webp');
     overflow: hidden;

@@ -1,35 +1,43 @@
 <div class="property-filter">
     <h3>ENCUENTRA TU LUGAR</h3>
-    <form action="" class="search-form">
+    <form action="/properties/search" class="search-form" method="GET">
         <div class="search--form-field">
             <label for="bedrooms">Dormitorios</label>
             <select name="bedrooms" id="bedrooms">
+                <option value="" disabled selected>Seleccionar</option>
                 <option value="1"> 1 </option>
                 <option value="2"> 2 </option>
                 <option value="3"> 3 </option>
                 <option value="4"> 4 </option>
                 <option value="5"> 5 </option>
-                <option value="6+"> 6+ </option>
+                <option value="45"> 45 </option>
             </select>
         </div>
         <div class="search--form-field">
-            <label for="operation">Operación</label>
-            <select name="operation" id="operation">
-                <option value="venta"> Venta </option>
-                <option value="alquiler"> Alquiler </option>
-                <option value="ventaYalquiler"> Venta/Alquiler </option>
+            <label for="operationType">Operación</label>
+            <select name="operationType" id="operationType">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Venta"> Venta </option>
+                <option value="Alquiler"> Alquiler </option>
+                <option value="Venta/Alquiler"> Venta/Alquiler </option>
             </select>                    
         </div>
         <div class="search--form-field">
-            <label for="type">Tipo de Propiedad</label>
-            <select name="type" id="type">
+            <label for="propertyType">Tipo de Propiedad</label>
+            <select name="propertyType" id="propertyType">
+                <option value="" disabled selected>Seleccionar</option>
                 <option value="apartamento">Apartamento</option>
-                <option value="casa"> Casa </option>
-                <option value="campo"> Campo</option>
-                <option value="chacra"> Chacra </option>
-                <option value="local"> Local Comercial</option>
+                <option value="Casa"> Casa </option>
+                <option value="Campo"> Campo</option>
+                <option value="Chacra"> Chacra </option>
+                <option value="Local Comercial"> Local Comercial</option>
             </select>                    
         </div>
         <button type="submit">Buscar <i class="fas fa-search"></i> </button>
     </form>
+    <div class="more-options" id="more-options">
+        <button>Mas opciones</button>
+        <i class="fas fa-arrow-down"></i>
+    </div>
+    
 </div>     
