@@ -27,7 +27,7 @@ const featuredProperties = properties.filter( property => {
 const featuredQuantityProperties = 8;
 const featuredPropertiesToFront = featuredProperties.slice(0, featuredQuantityProperties);
 
-const topThreeProperties = properties.filter( property => property.topThree);
+const topThreeProperties = properties.filter( property => property.topThree && property.published);
 const topThreePropertiesToFront = topThreeProperties.slice(0, 3);
 
 const newPropertiesQuantity = 8;
