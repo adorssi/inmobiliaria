@@ -38,7 +38,7 @@
                         <div>
                             <p>Localidad</p>
                             <span><% for(ciudad of ciudades) { %>
-                                <% if(property.city == ciudad.id) { %>
+                                <% if(property.city == ciudad.name) { %>
                                     <%= ciudad.name %>
                                 <% } %>
                             <% } %></span>

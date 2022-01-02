@@ -5,6 +5,8 @@ const folderData = path.join(__dirname, '../data');
 const propertyJSON = fs.readFileSync(folderData + '/properties.json', 'utf-8');
 let properties = JSON.parse(propertyJSON); 
 
+const publishedProperties = properties.filter(property => property.published);
+
 const tipoPropiedadesJSON = fs.readFileSync(folderData + '/tipo_propiedades.json', 'utf-8');
 const tipoPropiedades = JSON.parse(tipoPropiedadesJSON);
 
@@ -21,8 +23,13 @@ const operationTypes = ['Alquiler', 'Venta', 'Venta/Alquiler']
 
 const propertyController = {
     list: (req, res) => {
-        publishedProperties = properties.filter( property => property.published === true);
-        res.render('./properties/propertyList', {properties: publishedProperties, categories: categories});
+        res.render('./properties/propertyList', {
+            properties: publishedProperties,
+            tipoPropiedades: tipoPropiedades,
+            ciudades: ciudades,
+            departamentos: departamentos,
+            comodidades: comodidades,
+            operationTypes: operationTypes});
     },
     detail: (req, res) => {
         const propertyId = Number(req.params.id);
@@ -131,7 +138,7 @@ const propertyController = {
                     }
                 }
 
-                
+
                 for(item in propertyItems) {
                     property[item] = propertyItems[item];
                 }
@@ -167,8 +174,8 @@ const propertyController = {
         });
     },
     search: (req, res) => {
-        const {bedrooms, operationType, propertyType} = req.query;
-        const resultado = properties.filter(filtrarBedroom).filter(filtrarOperacion).filter(filtrarTipo)
+        const {bedrooms, operationType, propertyType, min, max, ciudad} = req.query;
+        const propiedades = properties.filter(filtrarBedroom).filter(filtrarOperacion).filter(filtrarTipo).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarCiudad)
 
         function filtrarBedroom(propiedad) {
             if(bedrooms) {
@@ -188,8 +195,26 @@ const propertyController = {
             }
             return propiedad;
         }
+        function filtrarMinimo(propiedad) {
+            if(min) {
+                return propiedad.price >= min;
+            }
+            return propiedad;
+        }
+        function filtrarMaximo(propiedad) {
+            if(max) {
+                return propiedad.price <= max;
+            }
+            return propiedad;
+        }
+        function filtrarCiudad(propiedad) {
+            if(ciudad) {
+                return propiedad.city == ciudad;
+            }
+            return propiedad;
+        }
         res.render('./properties/searchResults', {
-            propiedades: resultado,
+            propiedades: propiedades,
             tipoPropiedades: tipoPropiedades,
             ciudades: ciudades,
             departamentos: departamentos,

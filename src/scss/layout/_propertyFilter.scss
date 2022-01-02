@@ -1,7 +1,7 @@
 .property-filter {
     border: 1px solid white;
     margin: 0 auto;
-    background: linear-gradient(45deg,#14cfa6,#0040405c);
+    background: linear-gradient(45deg,#394253,#000000c2);
 
     h3 {
         color: #fff;
@@ -9,21 +9,24 @@
         text-align: center;
     }
     .more-options {
+        display: flex;
+        align-items: center;
+        justify-content: center;
         color: #fff;
         gap: 1rem;
-        align-items: center;
+        margin: 1rem;
         padding: 0.5rem;
-        display: inline;
-        border: 1px solid #ffffff2e;
-        background-color: red;
+        text-align: center;
+        grid-column: 1 / 3;
     }
 }
 .search-form {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
    
     button {
-        padding: 2rem 0;
+        padding: 1rem 0;
         width: 100%;
         border: 0;
         background-color: #6495eda8;
@@ -33,6 +36,7 @@
         justify-content: center;
         align-items: center;
         gap: 2rem;
+        border-radius: 5px;
     }
 }
 .search--form-field {
@@ -50,22 +54,35 @@
         color: #ede7e7;
     }
 
-    select {
+    select,
+    input {
         padding: 1rem;
         width: 100%;
         border: 0;
         border-radius: 5px;
-        background: transparent;
+        background: #2e3035;
         color: #ede7e7;
+    }
+    p {
+        color: #fff;
     }
 
 }
+.adicionales {
+    display: none;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1 / 3;
+    transition: all .3s;
+}
+.mostrar {
+    display: grid;
+}
 
-@media(min-width: 769px) {
+@media(min-width: 992px) {
     .property-filter {
         background: linear-gradient(45deg,#000,transparent);
         border: 0;
-        top: 350px;
+        top: 245px;
         width: 80%;
         position: absolute;
         left: 0;
@@ -73,13 +90,16 @@
         margin-left: auto;
         margin-right: auto;
         min-height: 150px;
+
+        .more-options {
+            grid-column: 1 / 5;
+        }
     }
     .search-form {
-        flex-direction: row;
-        justify-content: space-around;
+        @include grid(4);
         
         button {
-            padding: 2rem 1rem;
+            padding: .7rem 1rem;
             width: auto;
         }
         .search--form-field {
@@ -90,5 +110,9 @@
                 color: #000;
             }
         }
+    }
+    .adicionales {
+        grid-template-columns: repeat(4, 1fr);
+        grid-column: 1 / 5;
     }
 }

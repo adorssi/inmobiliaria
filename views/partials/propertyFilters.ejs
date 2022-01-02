@@ -33,11 +33,34 @@
                 <option value="Local Comercial"> Local Comercial</option>
             </select>                    
         </div>
-        <button type="submit">Buscar <i class="fas fa-search"></i> </button>
+        <div class="search--form-field">
+            <span>.</span>
+            <button type="submit">Buscar <i class="fas fa-search"></i> </button>
+        </div>
+        <div class="more-options" id="more-options">
+            <a href="#">Mas opciones</a>
+            <i class="fas fa-arrow-down" id="arrow"></i>
+        </div>
+        <section class="adicionales">
+            <div class="search--form-field">
+                <label for="min">Precio mínimo</label>
+                <input type="number" name="min" id="min">
+            </div>
+            <div class="search--form-field">
+                <label for="max">Precio máximo</label>
+                <input type="number" name="max" id="max">
+            </div>
+            <div class="search--form-field">
+                <label for="ciudad">Ciudad</label>
+                <select name="ciudad" id="ciudad">
+                    <option value="" disabled selected>--Ciudad--</option>
+                    <% for(ciudad of ciudades) { %>
+                        <option value="<%= ciudad.name %>"><%= ciudad.name %></option>
+                    <% } %>
+                </select>
+            </div>
+        </section>
     </form>
-    <div class="more-options" id="more-options">
-        <button>Mas opciones</button>
-        <i class="fas fa-arrow-down"></i>
-    </div>
+    
     
 </div>     
