@@ -1,4 +1,3 @@
-const moreOptions = document.getElementById('more-options');
 const arrow = document.getElementById('arrow');
 const bedrooms = document.getElementById('bedrooms');
 const operationType = document.getElementById('operationType');
@@ -7,6 +6,7 @@ const minimo = document.getElementById('min');
 const maximo = document.getElementById('max');
 const ciudad = document.getElementById('ciudad');
 const adicionales = document.querySelector('.adicionales');
+
 
 const datosBusqueda = {
     bedrooms: '',
@@ -17,12 +17,11 @@ const datosBusqueda = {
     ciudad: ''
 }
 
-moreOptions.addEventListener('click', (e) => {
-    e.preventDefault();
+function moreOptions() {
     adicionales.classList.toggle('mostrar');
     arrow.classList.toggle('fa-arrow-down');
     arrow.classList.toggle('fa-arrow-up');
-})
+}
 
 bedrooms.addEventListener('change', e => {
     datosBusqueda.bedrooms = e.target.value;

@@ -1,3 +1,6 @@
+.desktop {
+    display: none;
+}
 @media (min-width: 481px) {
     .most-featured-properties {
         grid-template-columns: repeat(2, 1fr);
@@ -9,6 +12,9 @@
 }
 
 @media (min-width: 769px) {
+    .desktop {
+        display: grid;
+    }
     .most-featured-properties {
         grid-template-columns: repeat(3, 1fr);
 
@@ -34,6 +40,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    position: relative;
 }
 .h3-home {
     text-align: center;
@@ -70,3 +77,4 @@
         text-align: center;
     }
 }
+

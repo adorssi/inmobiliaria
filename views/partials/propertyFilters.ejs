@@ -1,4 +1,4 @@
-<div class="property-filter">
+<div class="property-filter <%= locals.helpClass ? helpClass : '' %>">
     <h3>ENCUENTRA TU LUGAR</h3>
     <form action="/properties/search" class="search-form" method="GET">
         <div class="search--form-field">
@@ -37,8 +37,8 @@
             <span>.</span>
             <button type="submit">Buscar <i class="fas fa-search"></i> </button>
         </div>
-        <div class="more-options" id="more-options">
-            <a href="#">Mas opciones</a>
+        <div class="more-options" id="more-options" onclick="moreOptions()">
+            <p>Mas opciones</p>
             <i class="fas fa-arrow-down" id="arrow"></i>
         </div>
         <section class="adicionales">

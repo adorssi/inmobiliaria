@@ -31,6 +31,8 @@
     .informacion {
         grid-column: 2 / 3;
         grid-row: 1/2;
+        padding: 1rem;
+        
         div {
             display: flex;
             justify-content: space-between;
@@ -72,6 +74,9 @@
             align-items: center;
             justify-content: space-between;
         }
+    }
+    .descripcion {
+        padding: 1rem 0;
     }
 }
 

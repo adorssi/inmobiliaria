@@ -3,6 +3,37 @@
     position: absolute;
     width: 100%;
     z-index: 10;
+
+    .mobile-menu {
+        position: absolute;
+        height: 100vh;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        width: 0%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        background-color: #1f1e53e3;
+        opacity: 0;
+        transition: all .3s;
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+
+            li {
+                font-size: 3rem;
+            }
+        }
+    }
+    .active {
+        opacity: 1;
+        width: 100%;
+    }
 }
 .contenedor-header {
     display: flex;
@@ -10,8 +41,17 @@
     align-items: center;
     padding: 10px;
     gap: 1rem;
+    
+    .logo {
+        width: 30%;
+    }
 }
 .iconos-header {
+
+    .mobile {
+        position: relative;
+        z-index: 1;
+    }
     i {
         cursor: pointer;
         color: white;

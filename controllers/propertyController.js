@@ -4,6 +4,7 @@ const { exit } = require('process');
 const folderData = path.join(__dirname, '../data');
 const propertyJSON = fs.readFileSync(folderData + '/properties.json', 'utf-8');
 let properties = JSON.parse(propertyJSON); 
+const { validationResult } = require('express-validator' );
 
 const publishedProperties = properties.filter(property => property.published);
 
@@ -45,8 +46,8 @@ const propertyController = {
                 }
             }
         }
-
-        if(propertyObj.length > 0) {
+        
+        if(propertyObj.length > 0 && propertyObj[0].published) {
             res.render('./properties/propertyDetail', {
                 property: propertyObj[0],
                 ciudades: ciudades,

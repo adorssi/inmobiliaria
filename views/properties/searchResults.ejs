@@ -7,8 +7,13 @@
         <div class="search-results-container">
             <h1>Resultados</h1>
             <section class="lista-propiedades">
-                <% for(let property of propiedades) { %>
-                    <%- include('../partials/singleProperty.ejs', {property: property}) %>
+                <% if(propiedades.length != 0) { %>
+                    <% for(let property of propiedades) { %>
+                        <%- include('../partials/singleProperty.ejs', {property: property}) %>
+                    <% } %>
+                <% } else { %>
+                    <p>No se encontraron resultados</p><br>
+                    <a href="/">Volver al inicio</a>
                 <% } %>
             </section>
         </div>

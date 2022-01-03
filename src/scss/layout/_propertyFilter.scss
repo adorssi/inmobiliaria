@@ -18,6 +18,7 @@
         padding: 0.5rem;
         text-align: center;
         grid-column: 1 / 3;
+        cursor: pointer;
     }
 }
 .search-form {
@@ -78,11 +79,11 @@
     display: grid;
 }
 
-@media(min-width: 992px) {
+@media(min-width: 769px) {
     .property-filter {
         background: linear-gradient(45deg,#000,transparent);
         border: 0;
-        top: 245px;
+        bottom: 60px;
         width: 80%;
         position: absolute;
         left: 0;

@@ -3,6 +3,9 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const propertyController = require('../controllers/propertyController');
+const propertyFormValidator = require('../middlewares/propertyFormValidator');
+
+const validations = [];
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -21,7 +24,7 @@ router.get('/', propertyController.list);
 router.get('/detail/:id', propertyController.detail);
 
 router.get('/create', propertyController.createGET);
-router.post('/create', upload.single('image'), propertyController.createPOST);
+router.post('/create', upload.single('image'), propertyFormValidator, propertyController.createPOST);
 
 router.get('/edit/:id', propertyController.editGET);
 router.put('/edit/:id', upload.single('image'), propertyController.editPUT);
