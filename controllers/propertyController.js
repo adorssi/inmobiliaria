@@ -67,33 +67,47 @@ const propertyController = {
         })
     },
     createPOST: (req, res) => {
-        const id = Date.now();
 
-        let image;
-        if(req.file) {
-            image = '/images/properties/' + req.file.filename;
-        };
-        const defaultImg = '/images/default.png';
+        let errors = validationResult(req);
+        if(errors.isEmpty()) {
+            const id = Date.now();
 
-        let propertyItems = Object.assign({},req.body);
+            let image;
+            if(req.file) {
+                image = '/images/properties/' + req.file.filename;
+            };
+            const defaultImg = '/images/default.png';
 
-        propertyItems.price = Number(propertyItems.price);
+            let propertyItems = Object.assign({},req.body);
+
+            propertyItems.price = Number(propertyItems.price);
+            
         
-      
-        const propertyObj = {
-            id,
-            ...propertyItems,
-            image: image || defaultImg,
-            date: new Date().toLocaleDateString()
-        }
+            const propertyObj = {
+                id,
+                ...propertyItems,
+                image: image || defaultImg,
+                date: new Date().toLocaleDateString()
+            }
 
-        properties.unshift(propertyObj);
-        const propertyString = JSON.stringify(properties);
-        fs.writeFileSync(folderData + '/properties.json', propertyString);
-        res.render('./admin/adminDashboard', {
-            listadoPropiedades: properties,
-            tipoPropiedades: tipoPropiedades
-        });
+            properties.unshift(propertyObj);
+            const propertyString = JSON.stringify(properties);
+            fs.writeFileSync(folderData + '/properties.json', propertyString);
+            res.render('./admin/adminDashboard', {
+                listadoPropiedades: properties,
+                tipoPropiedades: tipoPropiedades
+            });
+        } else {
+            res.render('properties/propertyCreate', {
+                errors: errors.mapped(),
+                old: req.body,
+                tipoPropiedades: tipoPropiedades,
+                ciudades: ciudades,
+                departamentos: departamentos,
+                comodidades: comodidades
+            });
+        }
+        
     },
     editGET: (req, res) => {
         const propertyId = Number(req.params.id);

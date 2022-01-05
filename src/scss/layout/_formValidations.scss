@@ -1,0 +1,18 @@
+.errors-form {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    border: 1px solid #f3878785;
+    border-radius: 3px;
+    padding: 0 .5rem;
+    margin-top: 1rem;
+}
+.invalid {
+    border: 1px solid red;
+    box-shadow: 0px 1px 20px red;
+}
+.feedback {
+    margin: 0;
+    padding: 0;
+}

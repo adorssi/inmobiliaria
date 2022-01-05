@@ -8,7 +8,13 @@
                     <form action="/properties/create" method="POST" enctype="multipart/form-data" class="form-createProduct">
                         <div>
                             <label for="title">Titulo de la Propiedad</label>
-                            <input type="text" name="title" id="title" placeholder="Hermosa casa a estrenar...">
+                            <input type="text" name="title" id="title" placeholder="Hermosa casa a estrenar..." value="<%= locals.old && old.title ? old.title : ''%>">
+                            <% if (locals.errors && errors.title) { %>
+                                <div class="errors-form">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <p class="feedback"><%= errors.title.msg %></p>
+                                </div>
+                            <% } %>
                         </div>
                         <section class="price-fields">
                             <div>

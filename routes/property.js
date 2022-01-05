@@ -3,9 +3,13 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const propertyController = require('../controllers/propertyController');
-const propertyFormValidator = require('../middlewares/propertyFormValidator');
+const { body } = require('express-validator');
 
-const validations = [];
+const propertyFormValidator = [
+    body('title').notEmpty().withMessage('El nombre es obligatorio'),
+    body('address').notEmpty().withMessage('La dirección es obligatoria')    
+  ];
+
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
