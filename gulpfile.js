@@ -4,9 +4,9 @@ const autoprefixer = require('autoprefixer');
 const postcss    = require('gulp-postcss')
 const sourcemaps = require('gulp-sourcemaps')
 const cssnano = require('cssnano');
-//const concat = require('gulp-concat');
+const concat = require('gulp-concat');
 const terser = require('gulp-terser-js');
-//const rename = require('gulp-rename');
+const rename = require('gulp-rename');
 const imagemin = require('gulp-imagemin');
 //const notify = require('gulp-notify');
 const cache = require('gulp-cache');
@@ -14,7 +14,8 @@ const webp = require('gulp-webp');
 
 const paths = {
     scss: 'src/scss/**/*.scss',
-    js: 'src/js/**/*.js',
+    js: 'src/js/publicSite/**/*.js',
+    jsAdmin: 'src/js/adminSite/**/*.js',
     imagenes: 'src/images/**/*'
 }
 
@@ -30,14 +31,24 @@ function css() {
 }
 
 
-function javascript() {
+function javascriptFrontend() {
      return src(paths.js)
        .pipe(sourcemaps.init())
-//       .pipe(concat('bundle.js')) // final output file name
+       .pipe(concat('app.js')) // final output file name
        .pipe(terser())
        .pipe(sourcemaps.write('.'))
-//       .pipe(rename({ suffix: '.min' }))
+       .pipe(rename({ suffix: '.min' }))
        .pipe(dest('./public/js'))
+}
+
+function javascriptBackend() {
+    return src(paths.jsAdmin)
+      .pipe(sourcemaps.init())
+      .pipe(concat('app-admin.js')) // final output file name
+      .pipe(terser())
+      .pipe(sourcemaps.write('.'))
+      .pipe(rename({ suffix: '.min' }))
+      .pipe(dest('./public/js'))
 }
 
 function imagenes() {
@@ -57,9 +68,9 @@ function versionWebp() {
 
 function watchArchivos() {
     watch( paths.scss, css );
-    watch( paths.js, javascript );
+    watch( paths.js, javascriptFrontend, javascriptBackend );
     watch( paths.imagenes, imagenes );
     watch( paths.imagenes, versionWebp );
 }
   
-exports.default = parallel(css, imagenes, versionWebp, javascript, watchArchivos); 
+exports.default = parallel(css, imagenes, versionWebp, javascriptFrontend, javascriptBackend, watchArchivos); 

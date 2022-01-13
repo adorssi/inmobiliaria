@@ -4,8 +4,18 @@
     <body>
         <%- include('../partials/header', {helpClass: 'header-property--detail'}) %>
             <main class="property-detail">
-                <section class="property-detail--images">
-                    <img src="<%= property.image %>" width="100%">
+                <section class="property-detail--images" id="propertyGallery">
+
+                    <img src="<%= property.image %>" width="100%" id="main">
+
+                    <article class="property-detail--galeria">
+                        <% if(property.galeria) { %>                        
+                            <% for(let i = 0; i < property.galeria.length; i++) { %>
+                                <img src="/images/properties/<%= property.galeria[i] %>" width="100px" class="miniatura" data-id="<%= i %>">
+                            <% } %>
+                        <% } %>
+                    </article>
+                    
                 </section>
                     <h1 class="property-detail--title"> <%= property.title %> </h1>
                 
@@ -81,5 +91,6 @@
                 
             </main>
         <%- include('../partials/footer.ejs') %>
+        <script src="/js/propertyDetail.js"></script>
     </body>
 </html>    

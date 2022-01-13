@@ -28,7 +28,7 @@ router.get('/', propertyController.list);
 router.get('/detail/:id', propertyController.detail);
 
 router.get('/create', propertyController.createGET);
-router.post('/create', upload.single('image'), propertyFormValidator, propertyController.createPOST);
+router.post('/create', upload.fields([{name: 'portada', maxCount: 1}, {name: 'galeria', maxCount: 10}]), propertyFormValidator, propertyController.createPOST);
 
 router.get('/edit/:id', propertyController.editGET);
 router.put('/edit/:id', upload.single('image'), propertyController.editPUT);

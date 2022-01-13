@@ -5,7 +5,9 @@
             <%- include('../partials/admin/header.ejs') %>
                 <main class="main-contenedor">
                     <%- include('../partials/admin/sidebar.ejs') %>
-                    <form action="/properties/create" method="POST" enctype="multipart/form-data" class="form-createProduct">
+                    <div class="banner-pc"></div>
+                    <%- include('./propertyForm.ejs') %>
+                    <!-- <form action="/properties/create" method="POST" enctype="multipart/form-data" class="form-createProduct">
                         <div>
                             <label for="title">Titulo de la Propiedad</label>
                             <input type="text" name="title" id="title" placeholder="Hermosa casa a estrenar..." value="<%= locals.old && old.title ? old.title : ''%>">
@@ -137,7 +139,8 @@
                 <a href="/adminDash" class="btn btn-secondary">Cerrar</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
                 </div>
-            </form>
+            </form> -->
                 </main>
+                <script src="/js/app-admin.min.js"></script>
         </body>
 </html>

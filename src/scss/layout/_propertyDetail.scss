@@ -1,5 +1,6 @@
 .header-property--detail {
     background-color: #344554;
+    z-index: 0;
 }
 .property-detail {
     padding: 120px 0;
@@ -26,6 +27,13 @@
             background-color: #7b00b9;
             color: white;
             box-shadow: 1px 0px 7px 4px #00000052;
+        }
+    }
+    .property-detail--images {
+        #main {
+                max-height: 340px;
+                overflow: hidden;
+                cursor: pointer;
         }
     }
     .informacion {
@@ -77,6 +85,58 @@
     }
     .descripcion {
         padding: 1rem 0;
+    }
+    .property-detail--galeria {
+        display: flex;
+        justify-content: center;
+        overflow-x: scroll;
+        margin-top: 1rem;
+        gap: 1rem;
+
+        img {
+            cursor: pointer;
+        }
+    }
+}
+
+.overlay-image-detail {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000000c7;
+    display: grid;
+    place-items: center;
+
+    .img-fullsize-container {
+        position: relative;
+        width: 100%;
+        max-width: 80rem;
+        display: block;
+
+        img {
+           width: 100%;
+        }
+
+        i {
+            position: absolute;
+            top: 50%;
+            color: #fff;
+            font-size: 3.6rem;
+           
+            border-radius: 50px;
+            background-color: #00856f;
+        }
+
+        .fa-caret-left {
+            left: 1rem;
+            padding: 0 1.5rem 0 1rem;
+        }
+        .fa-caret-right {
+            right: 1rem;
+            padding: 0 1rem 0 1.5rem;
+        }
     }
 }
 

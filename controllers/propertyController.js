@@ -68,13 +68,24 @@ const propertyController = {
     },
     createPOST: (req, res) => {
 
+        const imgPortada = req.files.portada[0].filename;
+
+        const imgGaleria = req.files.galeria;
+        let galeria = [];
+
+        imgGaleria.forEach( item => {
+            galeria.push(item.filename)
+        });
+
+        galeria.push(imgPortada);
+
         let errors = validationResult(req);
         if(errors.isEmpty()) {
             const id = Date.now();
 
             let image;
-            if(req.file) {
-                image = '/images/properties/' + req.file.filename;
+            if(imgPortada) {
+                image = '/images/properties/' + imgPortada;
             };
             const defaultImg = '/images/default.png';
 
@@ -87,6 +98,7 @@ const propertyController = {
                 id,
                 ...propertyItems,
                 image: image || defaultImg,
+                galeria: galeria,
                 date: new Date().toLocaleDateString()
             }
 
@@ -107,6 +119,46 @@ const propertyController = {
                 comodidades: comodidades
             });
         }
+
+        // let errors = validationResult(req);
+        // if(errors.isEmpty()) {
+        //     const id = Date.now();
+
+        //     let image;
+        //     if(req.file) {
+        //         image = '/images/properties/' + req.file.filename;
+        //     };
+        //     const defaultImg = '/images/default.png';
+
+        //     let propertyItems = Object.assign({},req.body);
+
+        //     propertyItems.price = Number(propertyItems.price);
+            
+        
+        //     const propertyObj = {
+        //         id,
+        //         ...propertyItems,
+        //         image: image || defaultImg,
+        //         date: new Date().toLocaleDateString()
+        //     }
+
+        //     properties.unshift(propertyObj);
+        //     const propertyString = JSON.stringify(properties);
+        //     fs.writeFileSync(folderData + '/properties.json', propertyString);
+        //     res.render('./admin/adminDashboard', {
+        //         listadoPropiedades: properties,
+        //         tipoPropiedades: tipoPropiedades
+        //     });
+        // } else {
+        //     res.render('properties/propertyCreate', {
+        //         errors: errors.mapped(),
+        //         old: req.body,
+        //         tipoPropiedades: tipoPropiedades,
+        //         ciudades: ciudades,
+        //         departamentos: departamentos,
+        //         comodidades: comodidades
+        //     });
+        // }
         
     },
     editGET: (req, res) => {

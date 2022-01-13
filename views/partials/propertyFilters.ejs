@@ -22,15 +22,14 @@
                 <option value="Venta/Alquiler"> Venta/Alquiler </option>
             </select>                    
         </div>
+        <% console.log(tipoPropiedades)%>
         <div class="search--form-field">
             <label for="propertyType">Tipo de Propiedad</label>
             <select name="propertyType" id="propertyType">
                 <option value="" disabled selected>Seleccionar</option>
-                <option value="apartamento">Apartamento</option>
-                <option value="Casa"> Casa </option>
-                <option value="Campo"> Campo</option>
-                <option value="Chacra"> Chacra </option>
-                <option value="Local Comercial"> Local Comercial</option>
+                <% for(tipoPropiedad of tipoPropiedades) { %>
+                    <option value="<%= tipoPropiedad.id %>"> <%= tipoPropiedad.name %> </option>
+                <% } %>
             </select>                    
         </div>
         <div class="search--form-field">
