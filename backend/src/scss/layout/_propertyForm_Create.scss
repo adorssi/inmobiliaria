@@ -1,0 +1,51 @@
+@use  'base/mixins' as mixin;
+
+.form-createProduct {
+    position: relative;
+    fieldset {
+        border: 1px solid #8080805c;
+    }
+    
+    .fieldset-show {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: flex!important;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .fieldset-hide {
+        opacity: 0;
+    }
+    legend {
+        display: inline;
+        width: auto;
+        padding: 0 1rem!important;
+    }
+    fieldset {
+        &:not(:first-of-type) {
+            display: none;
+        }
+    }
+    
+}
+.grid-2 {
+    @include mixin.grid(2, 2rem)
+}
+.price-fields {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+}
+.grid-3 {
+    @include mixin.grid(3, 2rem, 30%)
+}
+.label-form {
+    padding: 0 1rem;
+
+    input {
+        margin-right: 1rem;
+    }
+}

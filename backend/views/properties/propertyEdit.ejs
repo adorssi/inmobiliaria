@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/admin/head.ejs') %>
+        <body>
+            <%- include('../partials/admin/header.ejs') %>
+                <main class="main-contenedor">
+                    <%- include('../partials/admin/sidebar.ejs') %>
+                    <form action="/properties/edit/<%= property.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="form-createProduct">
+                        <div>
+                            <label for="title">Titulo de la Propiedad</label>
+                            <input type="text" name="title" id="title" value="<%= property.title %>">
+                        </div>
+                        <section class="price-fields">
+                            <div>
+                                <label for="ref">REF #</label>
+                                <input type="text" name="ref" value="<%= property.ref %>">
+                            </div>
+                            <div>
+                                <label for="price">Precio</label>
+                                <select name="currency" id="currency">
+                                    <% for(moneda of monedas) { %>
+                                        <option value="<%=moneda.id%>" <%= property.moneda.id == moneda.id ? 'select' : ''  %>> <%= moneda.name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div>
+                                <input type="number" name="price" id="price" value="<%= property.price %>">
+                            </div>
+                        </section>
+                        <div class="input-imagenes">
+                            <label for="image">Imagenes del Producto</label>
+                            <div class="products-images">
+                                    <img src="<%= property.image %>" width="80px">
+                            </div>
+                            <input type="file" name="image">
+                        </div>
+                        <div>
+                            <label for="address">Dirección</label>
+                            <input type="text" name="address" id="address" value="<%= property.address %>">
+                        </div>
+                        <div>
+                            <select name="city" id="city">
+                                <option value="" disabled selected>--Localidad--</option>
+                                <% for(ciudad of ciudades) { %>
+                                    <option value="<%= ciudad.name %>"<%= property.city == ciudad.name ? 'selected' : '' %>> <%= ciudad.name %> </option>
+                                <% } %>
+                            </select>
+                        </div>        
+                        <div class="grid-2">
+                            <div>
+                                <label for="operationType">Operación</label>
+                                <select name="operationType" id="operationType">
+                                        <option value="Venta"<%= property.operationType == 'Venta' ? 'selected' : '' %>>Venta</option>
+                                        <option value="Alquiler"<%= property.operationType == 'Alquiler' ? 'selected' : '' %>>Alquiler</option>
+                                </select>
+                            </div>
+                            <div>
+                                <%const financiaciones = [{id:1,name:'Disponible'},{id:2,name:'No disponible'}]%>
+                                <label for="financiacion">Financiación</label>
+                                <select name="financiacion" id="financiacion">
+                                    <% for(financiacion of financiaciones) { %>
+                                        <option value="<%= financiacion.id %>"<%= property.financiacion == financiacion.id ? 'selected' : '' %>><%= financiacion.name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="type">Tipo de Propiedad</label>
+                                <select name="type" id="type">
+                                    <option value="" disabled selected>--Seleccionar--</option>
+                                    <% for(tipoPropiedad of tipoPropiedades) { %>
+                                        <option value="<%= tipoPropiedad.id %>"<%= property.type == tipoPropiedad.id ? 'selected' : '' %>> <%= tipoPropiedad.name %> </option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div>
+                                <%const estadosPropiedad = [{id:1,name:'Disponible'},{id:2,name:'No disponible'}]%>
+                                <label for="status">Estado</label>
+                                <select name="status" id="status">
+                                    <% for(estadoPropiedad of estadosPropiedad) { %>
+                                        <option value="<%= estadoPropiedad.id %>"<%= property.status == estadoPropiedad.id ? 'selected' : '' %>><%= estadoPropiedad.name %></option>
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="label-form" for="superficieTerreno">Área<label></label> <input type="number" name="superficieTerreno" id="superficieTerreno" value="<%= property.superficieTerreno %>">
+                            </div>
+                            <div>
+                                <label class="label-form" for="superficieConstruccion">Construcción (m2) </label><input type="number" name="superficieConstruccion" id="superficieConstruccion" value="<%= property.superficieConstruccion%>">
+                            </div>
+                        </div>
+                        <div class="grid-3">
+                            <div>
+                                <label for="bedrooms">Dormitorios</label>
+                                <input type="number" name="bedrooms" min="0" value="<%= property.bedrooms%>">
+                            </div>
+                            
+                            <div>
+                                <label for="toilet">Baños</label>
+                                <input type="number" name="toilet" min="0" value="<%= property.toilet%>">
+                            </div>
+
+                            <div>
+                                <label for="garage"> Garage </label>
+                                <input type="number" name="garage" min="0" value="<%= property.garage%>">
+                            </div>
+                        </div>
+                        <div>
+                            <textarea name="description" id="description" cols="30" rows="5" placeholder="Describe la propiedad..." width="100%"><%= property.description%></textarea>
+                        </div>
+
+                        <fieldset>
+                            <legend>Comodidades</legend>
+                            <% for(comodidad of comodidades) { %>
+                                <label class="label-form"> <input type="checkbox" name="comodidad" <% for(field in property) { %>
+                                            <% if(field == comodidad.name) { %>
+                                                checked
+                                            <% } %>
+                                        <% } %>
+                                    > <%= comodidad.name %></label><br>
+                            <% } %>
+                        </fieldset>
+
+                        <div class="grid-2">
+                            <div>
+                                <label class="label-form" for="published">
+                                <input type="checkbox" name="published" id="published" <%= property.published ? 'checked' : '' %>>Publicada</label>
+                            </div>
+                            <div>
+                                <label class="label-form" for="featured"><input type="checkbox" name="featured" id="featured"<%= property.featured ? 'checked' : '' %>>Destacada<label>
+                            </div>
+                            <div>
+                                <label class="label-form" for="topThree">
+                                <input type="checkbox" name="topThree" id="topThree"<%= property.topThree ? 'checked' : '' %>>Top 3<label>
+                            </div>
+                            <div>
+                                <label class="label-form" for="muestraPrecio"><input type="checkbox" name="muestraPrecio" id="muestraPrecio"<%= property.showPrice ? 'checked' : '' %>>Mostrar Precio<label>
+                            </div>
+                        </div>
+                        
+                </div>
+                <div class="modal-footer">
+                <a href="/adminDash" class="btn btn-secondary">Cerrar</a>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+                    </form>
+                </main>
+        </body>
+</html>

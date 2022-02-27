@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/admin/headPerfil.ejs') %>
+    </head>
+        <body>
+            <%- include('../partials/admin/headerPerfil.ejs') %>
+                <main class="main-contenedor">
+                    <%- include('../partials/admin/sidebar.ejs') %>
+                </main>
+                    <div class="contain img">
+                        <div class="img-perfil">
+                        <img src="/images/perfil-cabllero.png" class="rounded-circle" width="250">
+                        </div>
+                    </div>
+                    <div class="col-md-8 mt-1">
+                        <div class="card mb-3 content">
+                            <h1 class="m-3 pt-3">Acerca de mi</h1>
+                            <div class="car-body">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5 class="perfil-subtitle">Nombre Completo</h5>
+                                    </div>
+                                        <div class="col-md-9 text-secondary">
+                                        <input class="info_perfil" type="text" name="user" placeholder="mark zuk">
+                                        </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5 class="perfil-subtitle">Email</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        <input class="info_perfil" type="email" name="email" placeholder="mark@gmail">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5 class="perfil-subtitle">celular</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        <input class="info_perfil" type="tel" name="tel" placeholder="900092-22">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5 class="perfil-subtitle">Dirección</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        <input class="info_perfil" type="text" name="direccion" placeholder="en algun lugar">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h5 class="perfil-subtitle">contraseña</h5>
+                                    </div>
+                                    <div class="col-md-9 text-secondary">
+                                        <input class="info_perfil" type="password" name="password" placeholder="vivelavida">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="perfil_button">
+                                    <button class="boton_perfil" type="submit" value="">Editar Datos</button>
+                                    </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                
+
+                
+                
+        </body>
+</html>

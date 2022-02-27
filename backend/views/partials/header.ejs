@@ -1,0 +1,48 @@
+<header class="header-home <%= locals.helpClass ? helpClass : '' %>">
+    <div class="contenedor-header">
+        <section class="logo">
+            <a href="/"><img src="/images/logo_1.webp" alt="Logo" class="logo-mobile"></a>
+            <a href="/"><img src="/images/logo_1.webp" alt="Logo" class="tablet"></a>
+        </section>
+        <nav class="desktop">
+            <ul>
+                <li> <a href="/"> Inicio </a> </li>
+                <li> <a href="#"> Nosotros </a> </li>
+                <li> <a href="/properties"> Propiedades </a> </li>
+            </ul>
+        </nav>
+        <a class="contact-phone" href="#"><i class="fas fa-phone-alt"></i> +598 99 999 999</a>
+        <section class="iconos-header">
+            <nav class="mobile" id="mobile-menu-icon">
+                <i class="fas fa-ellipsis-v"></i>
+            </nav>
+            <% if(locals.userLogueado) { %>
+                <div class="user-options-container">
+                    <a href="/perfil" class="userBtn-header"> Hola, <%= userLogueado.name %> </a>
+                    <section class="userOptions">
+                        <ul>
+                            <li><a href="/perfil">
+                                    <span> Mi cuenta </span>
+                                    <i class="fas fa-user-circle"></i>
+                                </a>
+                            </li>
+                            <li><a href="/user/logout"> Cerrar sesión <i class="fas fa-sign-out-alt"></i></a></li>
+                            <% if(userLogueado.rol === 1) { %>
+                                 <li><a href="/adminDash"> Dashboard <i class="fas fa-tachometer-alt"></i></a></li>
+                            <% } %>
+                        </ul>
+                    </section>
+                </div>
+            <% } else { %>
+            <a href="/login"><i class="fas fa-user user-account-icon"></i> </a>
+            <% } %>
+        </section>
+    </div>
+    <div class="mobile-menu">
+        <ul>
+            <li> <a href="/"> Inicio </a> </li>
+            <li> <a href="#"> Nosotros </a> </li>
+            <li> <a href="/properties"> Propiedades </a> </li>
+        </ul>
+    </div>
+</header>

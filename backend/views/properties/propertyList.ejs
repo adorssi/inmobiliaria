@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head.ejs') %>
+<body>
+    <%- include('../partials/header.ejs', {helpClass: 'header-property--detail'}) %>
+    <main class="search-results--main">
+        <div class="search-results-container">
+            <section class="property-list-filters">
+                
+            </section>
+            <h1>Propiedades</h1>
+            <section class="lista-propiedades">
+                <% for(let property of properties) { %>
+                    <a href="/properties/detail/<%= property.id %>" class="property">
+                        <% if(locals.bookmark) { %>
+                            <i class="fas fa-bookmark"></i>
+                        <% } %>
+                        <div class="property-image">
+                            <span class="gradient"></span>
+                            <span class="propertyType"> 
+                                <%= property.tipoPropiedad.name %>
+                            </span>
+                            <img src=" <%= property.images %> " alt="Imagen Propiedad">
+                                <span class="operationType <%= property.operationType === 'Alquiler' ? 'tag-alquiler' : 'tag-venta' %>"> <%= property.operationType %> </span>
+                        </div>
+                        <div class="property-info--container">
+                            <h3><%= property.title %></h3>
+                            <p class="ref">REF# <%= property.ref %></p>
+                            <div class="address">
+                                        <i class="fas fa-city"></i>
+                                        <span><%= property.localidad.name %></span><br>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span><%= property.address %></span>
+                            </div>
+                            <div class="features">
+                                <div class="feature">
+                                    <i class="fas fa-toilet"></i>
+                                    <p> <%= property.toilets %> </p>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-bed"></i>
+                                    <p> <%= property.bedrooms %> </p>
+                                </div>
+                                <div class="feature">
+                                    <i class="fas fa-car"></i>
+                                    <p> <%= property.garage %> </p>
+                                </div>
+                            </div>
+                            <div class="info">
+                                <div class="price">
+                                    <% if(property.showPrice) { %>
+                                        <span class="currency">
+                                            <%= property.moneda.name %>
+                                        </span>
+                                        <span class="finalPrice"> <%= parseInt(property.price) %> </span>
+                                    <% } else { %>
+                                        <span class="consultarPrecio"> CONSULTE PRECIO </span>
+                                    <% } %>
+                                </div>
+                                <%- property.financiacion == 1 ? '<span class="financiacion"> ¡FINANCIACION! </span>' : '' %>
+                            </div>
+                        </div>
+                    </a>
+                <% } %>
+            </section>
+        </div>
+    </main>
+    <%- include('../partials/footer.ejs') %>
+</body>
+</html>

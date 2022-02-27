@@ -1,0 +1,7 @@
+<div class="property-image">
+    <span class="gradient"></span>
+    <span class="propertyType">
+        <%= locals.property ? property.tipoPropiedad.name : '' %>
+    </span>
+    <img src=" <%= locals.property ? property.images : '/images/default.png' %> " alt="Imagen Propiedad">
+</div>

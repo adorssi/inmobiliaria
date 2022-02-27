@@ -1,0 +1,63 @@
+<div class="property-filter <%= locals.helpClass ? helpClass : '' %>">
+    <h3>ENCUENTRA TU LUGAR</h3>
+    <form action="/properties/search" class="search-form" method="GET">
+        <div class="search--form-field">
+            <label for="bedrooms">Dormitorios</label>
+            <select name="bedrooms" id="bedrooms">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="1"> 1 </option>
+                <option value="2"> 2 </option>
+                <option value="3"> 3 </option>
+                <option value="4"> 4 </option>
+                <option value="5"> 5 </option>
+            </select>
+        </div>
+        <div class="search--form-field">
+            <label for="operationType">Operación</label>
+            <select name="operationType" id="operationType">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Venta"> Venta </option>
+                <option value="Alquiler"> Alquiler </option>
+                <option value="Venta/Alquiler"> Venta/Alquiler </option>
+            </select>                    
+        </div>
+        <div class="search--form-field">
+            <label for="propertyType">Tipo de Propiedad</label>
+            <select name="propertyType" id="propertyType">
+                <option value="" disabled selected>Seleccionar</option>
+                <% for(tipoPropiedad of tipoPropiedades) { %>
+                    <option value="<%= tipoPropiedad.id %>"> <%= tipoPropiedad.name %> </option>
+                <% } %>
+            </select>                    
+        </div>
+        <div class="search--form-field">
+            <span>.</span>
+            <button type="submit">Buscar <i class="fas fa-search"></i> </button>
+        </div>
+        <div class="more-options" id="more-options" onclick="moreOptions()">
+            <p>Mas opciones</p>
+            <i class="fas fa-arrow-down" id="arrow"></i>
+        </div>
+        <section class="adicionales">
+            <div class="search--form-field">
+                <label for="min">Precio mínimo</label>
+                <input type="number" name="min" id="min">
+            </div>
+            <div class="search--form-field">
+                <label for="max">Precio máximo</label>
+                <input type="number" name="max" id="max">
+            </div>
+            <div class="search--form-field">
+                <label for="ciudad">Ciudad</label>
+                <select name="ciudad" id="ciudad">
+                    <option value="" disabled selected>--Ciudad--</option>
+                    <% for(localidad of localidades) { %>
+                        <option value="<%= localidad.id %>"><%= localidad.name %></option>
+                    <% } %>
+                </select>
+            </div>
+        </section>
+    </form>
+    
+    
+</div>     

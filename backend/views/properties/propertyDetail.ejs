@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../partials/head') %>
+    <body>
+        <%- include('../partials/header', {helpClass: 'header-property--detail'}) %>
+            <main class="property-detail">
+                <section class="property-detail--images" id="propertyGallery">
+
+                    <img src="<%= property.images %>" width="100%" id="main">
+
+                    <article class="property-detail--galeria">
+                        <% if(property.galeria) { %>                        
+                            <% for(imagen of JSON.parse(property.galeria)) { %>
+                                <img src="/images/properties/<%= imagen %>" width="100px" class="miniatura">
+                            <% } %>
+                        <% } %>
+                    </article>
+                    
+                </section>
+                    <h1 class="property-detail--title"> <%= property.title %> </h1>
+                
+                    <article class="buttons">
+                        <button>Información</button>
+                        <button>Descripción</button>
+                    </article>
+                    <article class="informacion">
+                        <div>
+                            <p>REF#</p>
+                            <span><%= property.ref %></span>
+                        </div>
+                        <div>
+                            <p>Tipo</p>
+                                    <span><%= property.tipoPropiedad.name %></span>
+                        </div>
+                        <div>
+                            <p>Precio</p>
+                            <% if(property.muestraPrecio) { %>
+                                <span><%= property.moneda.name %> <%= property.price %></span>
+                            <% } else { %>
+                                <span>CONSULTE</span>
+                            <% } %>
+                        </div>
+                        
+                        <div>
+                            <p>Localidad</p>
+                            <span>
+                                <%= property.localidad.name %>
+                            </span>
+                        </div>
+
+                        <div>
+                            <p>Dirección</p>
+                            <span><%= property.address %></span>
+                        </div>
+                        <div>
+                            <p>Operación</p>
+                            <span class="operationType badge-detail <%= property.operationType === 'Alquiler' ? 'tag-alquiler text-white rounded-2xl px-2' : 'tag-venta text-white rounded-2xl px-2' %>"> <%= property.operationType %> </span>
+                        </div>
+                            <% if(property.operationType != 'Alquiler' && property.financiacion == 1) { %>
+                                <div>
+                                    <p>Financiación</p>
+                                    <span class="financiacion"> ¡FINANCIACION! </span>
+                                </div>
+                            <% } %>
+                            
+                        <% if(property.superficieTer > 0) { %>
+                            <div>
+                                <p>Superficie</p>
+                                <span><%= property.superficieTer %></span>
+                            </div>
+                        <% } %>
+                        <% if(property.superficieCons > 0) { %>
+                            <div>
+                                <p>Tamaño Construccion</p>
+                                <span><%= property.superficieCons %></span>
+                            </div>
+                        <% } %>
+                    </article>
+                    
+                    <%- include('../partials/propertyFeatures.ejs', {property, propertyComodidades: property.comodidades}) %>
+
+                    <article class="descripcion">
+                        <h2>Descripción</h2>
+                        <p><%= property.description %></p>
+                    </article>
+                    
+                
+            </main>
+        <%- include('../partials/footer.ejs') %>
+        <script src="/js/propertyDetail.js"></script>
+    </body>
+</html>    

@@ -1,0 +1,20 @@
+.errors-form {
+    display: flex;
+    flex-direction: row!important;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+    border: 1px solid #f3878785;
+    border-radius: 3px;
+    padding: 0 .5rem;
+    margin-top: 1rem;
+}
+.invalid {
+    padding: 0 1rem;
+    color: black;
+    background-color: orange;
+}
+.feedback {
+    margin: 0;
+    padding: 0;
+}
